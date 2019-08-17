@@ -104,8 +104,17 @@ abstract class WatcherService {
 		}
 	}
 	
-	protected void setProperty(Method method, Object obj, String file, String property) {
-		try (InputStream input = new FileInputStream(file)) {
+	/**
+	 * Calls the object's method passing as argument the actual property
+	 * contained in the file. The file is described by its filePath.
+	 * 
+	 * @param method
+	 * @param obj
+	 * @param filePath
+	 * @param property
+	 */
+	protected void setProperty(Method method, Object obj, String filePath, String property) {
+		try (InputStream input = new FileInputStream(filePath)) {
 
 			Properties prop = new Properties();
 			prop.load(input);
